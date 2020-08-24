@@ -8,8 +8,14 @@
     <div>
         <form action="{% url 'search:chart' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input name="number" type="hidden" value="{{ int }}">{{ int }}</input>
-            <input type="submit" value="검색" style="text-align: center;" >
+
+            {% for obj in names %}
+                {% if obj.number == int %}
+                    <input name="number" type="hidden" value="{{ int }}" style="font-color: white;">{{ obj.name }}</input>
+                    <input type="submit" value="검색" style="text-align: center;" >
+                {% endif %}
+            {% endfor %}
+
         </form>
     </div>
 {% endfor %}

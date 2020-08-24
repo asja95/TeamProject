@@ -36,3 +36,12 @@ class Chart(models.Model):
 
     def __str__(self):
         return self.genre
+
+
+
+class Name(models.Model):
+    number = models.CharField('번호', max_length=10)
+    name = models.CharField('장르', max_length=20)
+
+    def __str__(self):
+        return self.name

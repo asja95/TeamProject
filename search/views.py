@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from search.models import Keywords, Theme, Chart
+from django.shortcuts import render, redirect, get_object_or_404
+from search.models import Keywords, Theme, Chart, Name
 import json
 from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from urllib.request import urlopen
@@ -201,7 +201,15 @@ def fifth(request):
                 tmp = Chart(song=song, artist=artist, release=release, genre=genre)
                 tmp.save()
 
-    return render(request, 'fifth.html', {'ints': range(3550, 3576)})
+        numbers = list(range(3550, 3576))
+        names = ['가', '나', '다', '라', '마', '바', '사', '아', '자', '차', '카', '타', '파', '하', '아', '야', '어', '여', '오', '요',
+                 '우', '유', '으', '이', '얘', '예']
+
+        for i in range(26):
+            x = Name(number=str(numbers[i]), name=names[i])
+            x.save()
+
+    return render(request, 'fifth.html', {'ints': [str(x) for x in range(3550, 3576)], 'names': Name.objects.all()})
 
 
 
