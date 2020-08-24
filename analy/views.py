@@ -38,7 +38,8 @@ def upload(request):
 
         return render(request, 'list.html', {'filename': filename_only, 'tempo': int(tempo), 'time': int(total_time),
                                              'soundfile': '/' + beat_music, 'beat_times': '/' + beat_times_file,
-                                             'soundfile_original': '/' + original_music, 'time_original': int(total_time_original)})
+                                             'soundfile_original': '/' + original_music, 'time_original': int(total_time_original),
+                                             'beat_times': beat_times})
 
     return redirect('home1')
 

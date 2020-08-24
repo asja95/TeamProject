@@ -13,14 +13,12 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+    <link rel="stylesheet" href="/static/css/animation.css">
+    <script src="/static/js/animation.js"></script>
 
     <style>
-        body {
-        background-image: url(/static/img/back.jpg);
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        overflow-y:hidden
-        }
+
+
         .mydiv-top {
         height: 10px;
         }
@@ -56,7 +54,12 @@
     </style>
 </head>
 
-<body>
+<body id="sliderFrame">
+<div id="slider"><a class="bg_img" href="#"><img src="/static/img/backgroundimg_1.jpg" alt="#htmlcaption1" /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_2.jpg" alt="Multiple Animations!" /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_3.jpg" alt="Pure Javascript & CSS. No jQuery. No flash." /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_4.jpg" alt="#htmlcaption2" /></a> <a class="bg_img" href="#"><img src="http://www.menucool.com/slider/prod/image-slider-5.jpg" alt="Mouse-Over to Pause"/></a></div>
+  <div id="htmlcaption1" style="display: none;"> Caption 1 </div>
+  <div id="htmlcaption2" style="display: none;"> Caption 2 </div>
+
+
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" >
                 <div style="text-align: center; height: 100px; padding-top: 15px; font-size: 25px;">
@@ -86,12 +89,13 @@
                 {% endblock %}
                 </div>
             </div>
-    </div>
+
     <script src="/static/js/jquery.min.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/popper.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/bootstrap.min.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/main.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
             data-cf-settings="2e70319bb3298c022c929462-|49" defer=""></script>
+
 </body>
 </html>
