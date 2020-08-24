@@ -54,10 +54,8 @@
     </style>
 </head>
 
-<body id="sliderFrame">
-<div id="slider"><a class="bg_img" href="#"><img src="/static/img/backgroundimg_1.jpg" alt="#htmlcaption1" /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_2.jpg" alt="Multiple Animations!" /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_3.jpg" alt="Pure Javascript & CSS. No jQuery. No flash." /></a> <a class="bg_img" href="#"><img src="/static/img/backgroundimg_4.jpg" alt="#htmlcaption2" /></a> <a class="bg_img" href="#"><img src="http://www.menucool.com/slider/prod/image-slider-5.jpg" alt="Mouse-Over to Pause"/></a></div>
-  <div id="htmlcaption1" style="display: none;"> Caption 1 </div>
-  <div id="htmlcaption2" style="display: none;"> Caption 2 </div>
+
+<body id="bg">
 
 
     <div class="wrapper d-flex align-items-stretch">
@@ -66,19 +64,19 @@
                     <a href="{% url 'home' %}" class="logo" style="color: #60a5f7; font-weight: bold">웹과 음악 사이</a>
                 </div>
                 <ul class="list-unstyled components mb-5" style="font-weight: bold ">
-                    <li class="active">
+                    <li class="active" onmouseover="func1(1)">
                         <a href="{% url 'home1' %}"><span class="fa fa-upload mr-3"></span> 음악 분석</a>
                     </li>
-                    <li class="active">
+                    <li class="active" onmouseover="func1(2)">
                         <a href="{% url 'home2' %}"><span class="fa fa-search mr-3"></span> 키워드 검색</a>
                     </li>
-                    <li class="active">
+                    <li class="active" onmouseover="func1(3)">
                         <a href="{% url 'home3' %}"><span class="fa fa-youtube mr-3"></span> 동영상 검색</a>
                     </li>
-                    <li class="active">
+                    <li class="active" onmouseover="func1(4)">
                         <a href="{% url 'home4' %}"><span class="fa fa-film mr-3"></span> 테마별 검색</a>
                     </li>
-                    <li class="active">
+                    <li class="active" onmouseover="func1(5)">
                         <a href="{% url 'search:fifth' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
                     </li>
                 </ul>
