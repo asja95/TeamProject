@@ -1,5 +1,5 @@
 body{
-		background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url(http://www.sunproductss.com/image/1.jpg);
+		background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/back.jpg");
 		background-size: cover !important;
 		background-repeat: no-repeat !important;
 		background-position: center !important;

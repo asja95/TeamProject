@@ -18,7 +18,6 @@
 
     <style>
 
-
         .mydiv-top {
         height: 10px;
         }
@@ -54,10 +53,7 @@
     </style>
 </head>
 
-
 <body id="bg">
-
-
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" >
                 <div style="text-align: center; height: 100px; padding-top: 15px; font-size: 25px;">
@@ -68,16 +64,13 @@
                         <a href="{% url 'home1' %}"><span class="fa fa-upload mr-3"></span> 음악 분석</a>
                     </li>
                     <li class="active" onmouseover="func1(2)">
-                        <a href="{% url 'home2' %}"><span class="fa fa-search mr-3"></span> 키워드 검색</a>
+                        <a href="{% url 'home2' %}"><span class="fa fa-search mr-3"></span> 음악 검색</a>
                     </li>
                     <li class="active" onmouseover="func1(3)">
-                        <a href="{% url 'home3' %}"><span class="fa fa-youtube mr-3"></span> 동영상 검색</a>
+                        <a href="{% url 'search:fifth' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
                     </li>
                     <li class="active" onmouseover="func1(4)">
-                        <a href="{% url 'home4' %}"><span class="fa fa-film mr-3"></span> 테마별 검색</a>
-                    </li>
-                    <li class="active" onmouseover="func1(5)">
-                        <a href="{% url 'search:fifth' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
+                        <a href="{% url 'home3' %}"><span class="fa fa-youtube mr-3"></span> 동영상 검색</a>
                     </li>
                 </ul>
         </nav>
@@ -87,13 +80,12 @@
                 {% endblock %}
                 </div>
             </div>
-
+    </div>
     <script src="/static/js/jquery.min.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/popper.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/bootstrap.min.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/main.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
             data-cf-settings="2e70319bb3298c022c929462-|49" defer=""></script>
-
 </body>
 </html>
