@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block container %}
+<h2 class="mb-4 mytext">동영상 검색하기</h2>
+
+<div style="text-align: center;">
+    <form action="{% url 'search:video' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="video">
+        <input type="submit" value="검색">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block container %}
+<h2 class="mb-4 mytext">내음악 분석하기</h2>
+
+<div style="text-align: center;">
+    <form action="{% url 'analy:upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input  id="input-audio-file" type="file" name="audio"
+                accept=".wav,.mp3,.aac,.ogg,.wma,.flac,.alac,.aiff,audio/*"
+                multiple="multiple" >
+        <input type="submit" value="업로드">
+    </form>
+</div>
+{% endblock %}

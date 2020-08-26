@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block container %}
+<style>
+    a{
+      text-decoration:none;
+    }
+
+    .item-list:hover{
+        background-color:rgba(93,93,93,0.6);
+    }
+
+    .item-list{
+      color : #3d3d3d;
+        position: relative;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        vertical-align: middle;
+        z-index: 1;
+        transition: .3s ease-out;
+    }
+
+    .modal-window {
+      position: fixed;
+      background-color: rgba(1, 1, 1, 0.15);
+      top: -130px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+    .modal-window:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window>div {
+      width: 400px;
+      position: relative;
+      margin: 10% auto;
+      padding: 2rem;
+      background: #f3f3f3;
+      color: #444;
+    }
+
+    .modal-window header {
+      font-weight: bold;
+    }
+
+    .modal-close {
+      color: #aaa;
+      line-height: 50px;
+      font-size: 100%;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: 0;
+      width: 70px;
+      text-decoration: none;
+    }
+
+    .modal-close:hover {
+      color: #000;
+    }
+
+    .modal-window h1 {
+      font-size: 150%;
+      margin: 0 0 15px;
+    }
+
+    .btn, .btn-large, .btn-flat {
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        padding: .005em .5em 1em;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn, .btn-large {
+        text-decoration: none;
+        color: #fff;
+        background-color: #26a69a;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer;
+    }
+
+    ghpages-materialize.css:1
+    .btn, .btn-large, .btn-floating, .btn-large, .btn-flat {
+        font-size: 0.6rem;
+        outline: 0;
+    }
+
+    #popup-content {
+      height: 100%;
+      overflow: scroll;
+    }
+
+    th, td {
+    text-align: center;
+    font-size: 15px;
+    }
+
+    p {
+    font-size: 115%;
+    }
+    h2 {
+    color: #FFFFF0;
+    opacity: 0.8;
+    }
+    .modal-window::-webkit-scrollbar {
+    display: none;
+    }
+
+</style>
+
+<h2 class="mb-4">{{ keyword }}</h2>
+<div class="container here">
+        <table class="table table-hover keyword-table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 5%">No.</th>
+                    <th scope="col" style="width: 10%">포스터</th>
+                    <th scope="col" style="width: 30%">노래제목</th>
+                    <th scope="col" style="width: 30%">앨범제목</th>
+                    <th scope="col" style="width: 15%">가수</th>
+                    <th scope="col" style="width: 10%">상세정보</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for content in contents %}
+                <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td>
+                        <img src="{{ content.image }}">
+                    </td>
+                    <td>{{ content.song }}</td>
+                    <td>{{ content.album }}</td>
+                    <td>{{ content.artist }}</td>
+                    <td>
+                        <a class="item-list btn" href="#open-moda-{{ forloop.counter }}" >열기</a>
+
+                        <div id="open-moda-{{ forloop.counter }}" class="modal-window" style="overflow-X:hidden">
+                          <div display="inline">
+                             <a href="#modal-close" title="Close" class="modal-close">Close</a>
+                              <p>제목: {{ content.song }}</p>
+                              <p>장르: {{ content.genre }}</p>
+                              <p>발매날짜: {{ content.release }}</p>
+                              <p>가사:</p>
+                              <pre>
+                                  <p>{{ content.lyrics }}</p>
+                              </pre>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+<div>
+  <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if song.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ song.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in song.paginator.page_range %}
+                {% if page_number == song.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if song.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ song.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+
+</div>
+
+{% endblock %}

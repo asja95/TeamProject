@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block container %}
+<style>
+    a{
+      text-decoration:none;
+    }
+
+    .item-list:hover{
+        background-color:rgba(93,93,93,0.6);
+    }
+
+    .item-list{
+      color : #3d3d3d;
+        position: relative;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        vertical-align: middle;
+        z-index: 1;
+        transition: .3s ease-out;
+    }
+
+    .modal-window {
+      position: fixed;
+      background-color: rgba(1, 1, 1, 0.15);
+      top: -130px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+    .modal-window:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window>div {
+      width: 400px;
+      position: relative;
+      margin: 10% auto;
+      padding: 2rem;
+      background: #f3f3f3;
+      color: #444;
+    }
+
+    .modal-window header {
+      font-weight: bold;
+    }
+
+    .modal-close {
+      color: #aaa;
+      line-height: 50px;
+      font-size: 100%;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: 0;
+      width: 70px;
+      text-decoration: none;
+    }
+
+    .modal-close:hover {
+      color: #000;
+    }
+
+    .modal-window h1 {
+      font-size: 150%;
+      margin: 0 0 15px;
+    }
+
+    .btn, .btn-large, .btn-flat {
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        padding: .005em .5em 1em;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn, .btn-large {
+        text-decoration: none;
+        color: #fff;
+        background-color: #26a69a;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer;
+    }
+
+    ghpages-materialize.css:1
+    .btn, .btn-large, .btn-floating, .btn-large, .btn-flat {
+        font-size: 0.6rem;
+        outline: 0;
+    }
+
+    #popup-content {
+      height: 100%;
+      overflow: scroll;
+    }
+
+    th, td {
+    text-align: center;
+    font-size: 15px;
+    }
+
+    p {
+    font-size: 115%;
+    }
+    h2 {
+    color: #FFFFF0;
+    opacity: 0.8;
+    }
+    .modal-window::-webkit-scrollbar {
+    display: none;
+    }
+
+</style>
+
+<h2 class="mb-4">{{ keyword }}</h2>
+<div class="container here">
+        <table class="table table-hover keyword-table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 5%">No.</th>
+                    <th scope="col" style="width: 30%">노래제목</th>
+                    <th scope="col" style="width: 35%">가수</th>
+                    <th scope="col" style="width: 20%">발매날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for content in contents %}
+                <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td>{{ content.song }}</td>
+                    <td>{{ content.artist }}</td>
+                    <td>{{ content.release }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+{% endblock %}

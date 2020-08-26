@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block container %}
+
+<style>
+    th, td {
+    text-align: center;
+    font-size: 15px;
+    }
+</style>
+
+<h2 class="mb-4 mytext">{{ date }} 인기 차트</h2>
+
+{% if charts %}
+
+    <div class="container here">
+        <table class="table table-hover keyword-table here">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 10%">순위</th>
+                    <th scope="col" style="width: 60%">노래</th>
+                    <th scope="col" style="width: 30%">가수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chart in charts %}
+                <tr>
+                    <th>{{ forloop.counter }}위</th>
+                    <td>{{ chart.title }}</td>
+                    <td>{{ chart.artist }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endif %}
+
+{% endblock %}
