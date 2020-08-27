@@ -2,25 +2,28 @@
 {% load bootstrap4 %}
 {% block container %}
 
+<link rel="stylesheet" href="/static/css/select.css">
+<script src="/static/js/select.js"></script>
 
 <h2 class="mb-4 mytext">키워드로 검색하기</h2>
-<p style="text-align: center;">※최대 100가지를 알려드리며, 네트워크 환경에 따라 시간이 소요될 수 있습니다.</p>
+<p style="text-align: center; color: #f8f9fa;">※최대 100가지를 알려드리며, 네트워크 환경에 따라 시간이 소요될 수 있습니다.</p>
 
 <div style="text-align: center;">
     <form action="{% url 'search:search' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <select name="item">
+        <div class="dropdown dropdown-dark" >
+        <select class="dropdown-select" name="item">
+            <option selected disabled>Select</option>
             <option value="keyword">키워드</option>
             <option value="movie">영화 OST</option>
             <option value="drama">드라마 OST</option>
             <option value="musical">뮤지컬 OST</option>
         </select>
-
-        <input type="text" name="name" style="text-align: center;">
-        <input type="submit" value="검색" style="text-align: center;">
+        </div> &nbsp;
+        <input type="text" name="name" style="text-align: center;" placeholder="Search...">
+        <button type="button" class="btn form-search-submit">&#x1f50e;</button>
     </form>
-
 </div>
+
 
 {% endblock %}

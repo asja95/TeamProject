@@ -173,9 +173,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-    </div>
-
-<div>
+ <!-- 페이징처리 시작 -->
   <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
             {% if song.has_previous %}
@@ -189,6 +187,7 @@
             {% endif %}
             <!-- 페이지리스트 -->
             {% for page_number in song.paginator.page_range %}
+            {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
                 {% if page_number == song.number %}
                 <li class="page-item active" aria-current="page">
                     <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
@@ -198,6 +197,7 @@
                     <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
                 </li>
                 {% endif %}
+            {% endif %}
             {% endfor %}
             <!-- 다음페이지 -->
             {% if song.has_next %}
@@ -210,7 +210,6 @@
             </li>
             {% endif %}
         </ul>
-
-</div>
+  </div>
 
 {% endblock %}

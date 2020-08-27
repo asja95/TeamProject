@@ -12,7 +12,17 @@ import requests
 
 
 # Create your views here.
+def keyword(request):
+    return 'keyword'
 
+def movie(request):
+    return 'movie'
+
+def drama(request):
+    return 'drama'
+
+def musical(request):
+    return 'musical'
 
 def search(request):
     # 키워드 검색일 때.
@@ -106,7 +116,6 @@ def search(request):
                 tmp.save()
 
             contents = Keywords.objects.all()
-
             page = request.GET.get('page', '1')
             paginator = Paginator(contents, 10)
             page_obj = paginator.get_page(page)
