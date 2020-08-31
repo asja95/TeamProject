@@ -1,0 +1,25 @@
+body{
+		background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/back.jpg");
+		background-size: cover !important;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+		margin: 0px;
+	}
+	.box{
+		padding: 100px;
+	}
+	.box1{
+		width: 32%;
+		display: inline-block;
+		border: 1px solid #fff;
+		margin-bottom: 5px;
+		cursor: pointer;
+	}
+	.box1 h3{
+		color: #fff;
+		font-size: 20px;
+		font-weight: 600;
+		text-align: center;
+		padding: 50px 0px;
+		margin: 0px;
+	}

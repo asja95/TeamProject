@@ -13,6 +13,8 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+    <link rel="stylesheet" href="/static/css/animation.css">
+    <script src="/static/js/animation.js"></script>
     <script>
     $(document).ready(function() {
     $('#loading').hide();
@@ -24,11 +26,6 @@
     </script>
 
     <style>
-        body {
-        background-image: url(/static/img/back.jpg);
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        }
         .mydiv-top {
         height: 10px;
         }
@@ -82,7 +79,7 @@
     </style>
 </head>
 
-<body>
+<body id="bg">
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" >
                 <div style="text-align: center; height: 100px; padding-top: 15px; font-size: 25px;">

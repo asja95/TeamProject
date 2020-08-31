@@ -130,6 +130,9 @@
     }
 
 </style>
+        <div id="loading">
+        <img src="/static/img/711.gif" alt="loading">
+    </div>
 
 <h2 class="mb-4">{{ keyword }}</h2>
 <div class="container here">
@@ -145,7 +148,7 @@
                 </tr>
             </thead>
             <tbody>
-               {% for content in contents %}
+               {% for content in song %}
                 <tr>
                     <th>{{ forloop.counter }}</th>
                     <td>

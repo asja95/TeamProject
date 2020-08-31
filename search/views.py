@@ -131,26 +131,43 @@ def keyword(request):
                                image=image)
                 tmp.save()
 
-        else:
-            song, album, artist = '노래 제목을 알 수 없습니다.', '앨범명을 알 수 없습니다.', '아티스트를 알 수 없습니다.'
-            image = '/static/img/noimg.jpg'
-            lyrics, release, genre = '가사정보가 없습니다.', '앨범 발매연도를 알 수 없습니다.', '장르정보가 없습니다.'
-            tmp = Keywords(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre,
-                           image=image)
-            tmp.save()
-
-        contents = Keywords.objects.all()
-
-        page = request.GET.get('page', '1')
-        paginator = Paginator(contents, 10)
+        song = Keywords.objects.all()
+        paginator = Paginator(song, 10)
+        page = request.GET.get('page', 1)
         page_obj = paginator.get_page(page)
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(page) if page else 1
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
 
-        return render(request, 'keyword.html',
-                      {'contents': contents, 'keyword': request.POST['name'], 'song': page_obj})
+        if end_index >= max_index:
+            end_index = max_index
+        paginator_range = paginator.page_range[start_index:end_index]
 
-    # 페이징을 위해 GET방식으로 호출할 때.
+        return render(request, 'keyword.html', {'keyword': request.POST['name'], 'song': page_obj,
+                                                'paginator_range': paginator_range,
+                                                'qs': parse.quote(request.POST['name'])})
+
+
     else:
-        return redirect('home2')
+        song = Keywords.objects.all()
+        paginator = Paginator(song, 10)
+        page = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page)
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(page) if page else 1
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+
+        if end_index >= max_index:
+            end_index = max_index
+        paginator_range = paginator.page_range[start_index:end_index]
+
+        return render(request, 'keyword.html', {'keyword': request.GET['name'], 'song': page_obj,
+                                                'paginator_range': paginator_range, 'qs': parse.quote(request.GET['name'])})
+
 
 
 
