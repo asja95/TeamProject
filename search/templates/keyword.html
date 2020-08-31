@@ -144,9 +144,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                   {% for content in contents %}
+                {% if song %}
+                   {% for content in song %}
                     <tr>
-                        <th>{{ forloop.counter }}</th>
+                        <th>{{ content.id }}</th>
                         <td>
                             <img src="{{ content.image }}">
                         </td>
@@ -171,6 +172,7 @@
                         </td>
                     </tr>
                     {% endfor %}
+                {% endif %}
                 </tbody>
             </table>
     </div>
@@ -180,7 +182,7 @@
             <!-- 이전페이지 -->
             {% if song.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ song.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ song.previous_page_number }}&name={{keyword}}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -191,18 +193,18 @@
             {% for page_number in song.paginator.page_range %}
                 {% if page_number == song.number %}
                 <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link" href="?page={{ page_number }}&name={{keyword}}">{{ page_number }}</a>
                 </li>
                 {% else %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link" href="?page={{ page_number }}&name={{keyword}}">{{ page_number }}</a>
                 </li>
                 {% endif %}
             {% endfor %}
             <!-- 다음페이지 -->
             {% if song.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ song.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ song.next_page_number }}&name={{keyword}}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
