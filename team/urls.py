@@ -11,7 +11,6 @@ urlpatterns = [
     url('first/', TemplateView.as_view(template_name='first.html'), name='home1'),
     url('second/', TemplateView.as_view(template_name='second.html'), name='home2'),
     url('third/', TemplateView.as_view(template_name='third.html'), name='home3'),
-    url('fourth/', TemplateView.as_view(template_name='fourth.html'), name='home4'),
     path('analy/', include('analy.urls')),
     path('search/', include('search.urls')),
     path('interest/', include('interest.urls')),

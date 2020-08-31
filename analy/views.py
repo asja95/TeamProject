@@ -26,11 +26,11 @@ def upload(request):
         total_time = len(x) / sr
 
         original_music = 'media/' + filename
-        beat_music = 'static/outputs/musics' + filename_only + '_beat.wav'
+        beat_music = 'static/outputs/musics/' + filename_only + '_beat.wav'
         clicks = librosa.clicks(beat_times, sr=sr, length=len(x))
         write(beat_music, sr, x + clicks)
 
-        beat_times_file = 'static/outputs/beats' + filename_only + '_beat.txt'
+        beat_times_file = 'static/outputs/beats/' + filename_only + '_beat.txt'
         with open(beat_times_file, 'w') as f:
             for item in beat_times:
                 f.write("%s\n" % round(item, 2))

@@ -130,50 +130,56 @@
     }
 
 </style>
-    <h2 class="mb-4">{{ keyword }}</h2>
-    <div class="container here">
-            <table class="table table-hover keyword-table">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 5%">No.</th>
-                        <th scope="col" style="width: 10%">포스터</th>
-                        <th scope="col" style="width: 30%">노래제목</th>
-                        <th scope="col" style="width: 30%">앨범제목</th>
-                        <th scope="col" style="width: 15%">가수</th>
-                        <th scope="col" style="width: 10%">상세정보</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   {% for content in contents %}
-                    <tr>
-                        <th>{{ forloop.counter }}</th>
-                        <td>
-                            <img src="{{ content.image }}">
-                        </td>
-                        <td>{{ content.song }}</td>
-                        <td>{{ content.album }}</td>
-                        <td>{{ content.artist }}</td>
-                        <td>
-                            <a class="item-list btn" href="#open-moda-{{ forloop.counter }}" >열기</a>
+        <div id="loading">
+        <img src="/static/img/711.gif" alt="loading">
+    </div>
 
-                            <div id="open-moda-{{ forloop.counter }}" class="modal-window" style="overflow-X:hidden">
-                              <div display="inline">
-                                 <a href="#modal-close" title="Close" class="modal-close">Close</a>
-                                  <p>제목: {{ content.song }}</p>
-                                  <p>장르: {{ content.genre }}</p>
-                                  <p>발매날짜: {{ content.release }}</p>
-                                  <p>가사:</p>
-                                  <pre>
-                                      <p>{{ content.lyrics }}</p>
-                                  </pre>
-                              </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
- <!-- 페이징처리 시작 -->
+<h2 class="mb-4">{{ keyword }}</h2>
+<div class="container here">
+        <table class="table table-hover keyword-table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 5%">No.</th>
+                    <th scope="col" style="width: 10%">포스터</th>
+                    <th scope="col" style="width: 30%">노래제목</th>
+                    <th scope="col" style="width: 30%">앨범제목</th>
+                    <th scope="col" style="width: 15%">가수</th>
+                    <th scope="col" style="width: 10%">상세정보</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for content in song %}
+                <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td>
+                        <img src="{{ content.image }}">
+                    </td>
+                    <td>{{ content.song }}</td>
+                    <td>{{ content.album }}</td>
+                    <td>{{ content.artist }}</td>
+                    <td>
+                        <a class="item-list btn" href="#open-moda-{{ forloop.counter }}" >열기</a>
+
+                        <div id="open-moda-{{ forloop.counter }}" class="modal-window" style="overflow-X:hidden">
+                          <div display="inline">
+                             <a href="#modal-close" title="Close" class="modal-close">Close</a>
+                              <p>제목: {{ content.song }}</p>
+                              <p>장르: {{ content.genre }}</p>
+                              <p>발매날짜: {{ content.release }}</p>
+                              <p>가사:</p>
+                              <pre>
+                                  <p>{{ content.lyrics }}</p>
+                              </pre>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+<div>
   <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
             {% if song.has_previous %}
@@ -187,7 +193,6 @@
             {% endif %}
             <!-- 페이지리스트 -->
             {% for page_number in song.paginator.page_range %}
-            {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
                 {% if page_number == song.number %}
                 <li class="page-item active" aria-current="page">
                     <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
@@ -197,7 +202,6 @@
                     <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
                 </li>
                 {% endif %}
-            {% endif %}
             {% endfor %}
             <!-- 다음페이지 -->
             {% if song.has_next %}
@@ -210,6 +214,7 @@
             </li>
             {% endif %}
         </ul>
-  </div>
+
+</div>
 
 {% endblock %}

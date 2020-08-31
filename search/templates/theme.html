@@ -130,44 +130,45 @@
     }
 
 </style>
-    <h2 class="mb-4">{{ keyword }}</h2>
-    <div class="container here">
-            <table class="table table-hover keyword-table">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 5%">No.</th>
-                        <th scope="col" style="width: 30%">노래제목</th>
-                        <th scope="col" style="width: 35%">앨범제목</th>
-                        <th scope="col" style="width: 20%">가수</th>
-                        <th scope="col" style="width: 10%">상세정보</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   {% for content in contents %}
-                    <tr>
-                        <th>{{ forloop.counter }}</th>
-                        <td>{{ content.song }}</td>
-                        <td>{{ content.album }}</td>
-                        <td>{{ content.artist }}</td>
-                        <td>
-                            <a class="item-list btn" href="#open-moda-{{ forloop.counter }}" >열기</a>
 
-                            <div id="open-moda-{{ forloop.counter }}" class="modal-window" style="overflow-X:hidden">
-                              <div display="inline">
-                                 <a href="#modal-close" title="Close" class="modal-close">Close</a>
-                                  <p>제목: {{ content.song }}</p>
-                                  <p>장르: {{ content.genre }}</p>
-                                  <p>발매날짜: {{ content.release }}</p>
-                                  <p>가사:</p>
-                                  <pre>
-                                      <p>{{ content.lyrics }}</p>
-                                  </pre>
-                              </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-    </div>
+<h2 class="mb-4">{{ keyword }}</h2>
+<div class="container here">
+        <table class="table table-hover keyword-table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 5%">No.</th>
+                    <th scope="col" style="width: 30%">노래제목</th>
+                    <th scope="col" style="width: 35%">앨범제목</th>
+                    <th scope="col" style="width: 20%">가수</th>
+                    <th scope="col" style="width: 10%">상세정보</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for content in contents %}
+                <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td>{{ content.song }}</td>
+                    <td>{{ content.album }}</td>
+                    <td>{{ content.artist }}</td>
+                    <td>
+                        <a class="item-list btn" href="#open-moda-{{ forloop.counter }}" >열기</a>
+
+                        <div id="open-moda-{{ forloop.counter }}" class="modal-window" style="overflow-X:hidden">
+                          <div display="inline">
+                             <a href="#modal-close" title="Close" class="modal-close">Close</a>
+                              <p>제목: {{ content.song }}</p>
+                              <p>장르: {{ content.genre }}</p>
+                              <p>발매날짜: {{ content.release }}</p>
+                              <p>가사:</p>
+                              <pre>
+                                  <p>{{ content.lyrics }}</p>
+                              </pre>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
 {% endblock %}

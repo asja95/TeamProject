@@ -15,9 +15,17 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
     <link rel="stylesheet" href="/static/css/animation.css">
     <script src="/static/js/animation.js"></script>
+    <script>
+    $(document).ready(function() {
+    $('#loading').hide();
+    $('#next').submit(function(){
+    $('#loading').show();
+    return true;
+    });
+    });
+    </script>
 
     <style>
-
         .mydiv-top {
         height: 10px;
         }
@@ -34,7 +42,6 @@
         .mytext {
         color: #FFFFF0;
         text-align: center;
-        opacity: 0.8;
         }
         .here {
         overflow-y:scroll;
@@ -50,6 +57,25 @@
         #sidebar {
         background-color: #212529;
         }
+
+        #loading {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        background: rgba(255, 255, 255, 0.2);
+        z-index: 99;
+        text-align: center;
+        }
+        #loading > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 100;
+        }
+
     </style>
 </head>
 
@@ -60,16 +86,16 @@
                     <a href="{% url 'home' %}" class="logo" style="color: #60a5f7; font-weight: bold">웹과 음악 사이</a>
                 </div>
                 <ul class="list-unstyled components mb-5" style="font-weight: bold ">
-                    <li class="active" onmouseover="func1(1)">
+                    <li class="active">
                         <a href="{% url 'home1' %}"><span class="fa fa-upload mr-3"></span> 음악 분석</a>
                     </li>
-                    <li class="active" onmouseover="func1(2)">
+                    <li class="active">
                         <a href="{% url 'home2' %}"><span class="fa fa-search mr-3"></span> 음악 검색</a>
                     </li>
-                    <li class="active" onmouseover="func1(3)">
-                        <a href="{% url 'search:fifth' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
+                    <li class="active">
+                        <a href="{% url 'search:genre' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
                     </li>
-                    <li class="active" onmouseover="func1(4)">
+                    <li class="active">
                         <a href="{% url 'home3' %}"><span class="fa fa-youtube mr-3"></span> 동영상 검색</a>
                     </li>
                 </ul>
