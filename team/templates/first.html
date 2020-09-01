@@ -4,23 +4,27 @@
 
 <style>
     body{
-		background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/backgroundimg_1.jpg");
-		background-size: cover !important;
-		background-repeat: no-repeat !important;
-		background-position: center !important;
-		margin: 0px;
-	}
+            background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/backgroundimg_1.jpg");
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            margin: 0px;
+        }
 </style>
 
-<h2 class="mb-4 mytext">내음악 분석하기</h2>
+<div style="transform: translate(0%, 160%);">
 
-<div style="text-align: center;">
-    <form action="{% url 'analy:upload' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input  id="input-audio-file" type="file" name="audio"
-                accept=".wav,.mp3,.aac,.ogg,.wma,.flac,.alac,.aiff,audio/*"
-                multiple="multiple" >
-        <input type="submit" value="업로드">
-    </form>
+    <h2 class="mb-4 mytext">내음악 분석하기</h2>
+
+    <div style="text-align: center;">
+        <form action="{% url 'analy:upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input  id="input-audio-file" type="file" name="audio"
+                    accept=".wav,.mp3,.aac,.ogg,.wma,.flac,.alac,.aiff,audio/*"
+                    multiple="multiple" >
+            <input type="submit" value="업로드">
+        </form>
+    </div>
+
 </div>
 {% endblock %}

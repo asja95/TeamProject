@@ -486,16 +486,14 @@ def genre(request):
 # 각 검색 버튼을 눌렀을 때 수행할 것.
 def chart(request):
     if request.method == 'POST':
-        genre = Name.objects.get(number=str(request.POST['number'])).name
+        genre = Name.objects.get(number=str(request.POST['item'])).name
 
         # 이미 해당 차트의 데이터가 존재하면 크롤링을 반복하지 않을 것.
         if not Chart.objects.filter(genre=genre):
-            url = str('https://www.music-flo.com/api/meta/v1/chart/track/' + str(request.POST['number']))
+            url = str('https://www.music-flo.com/api/meta/v1/chart/track/' + str(request.POST['item']))
             u = urlopen(url)
             data = u.read()
             j = json.loads(data)
-
-            genre = Name.objects.get(number=str(request.POST['number'])).name
 
             obj = j['data']['trackList']
 
