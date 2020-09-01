@@ -3,6 +3,13 @@
 {% block container %}
 
 <style>
+    body{
+            background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/backgroundimg_5.jpg");
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            margin: 0px;
+        }
     img {
     width: 200px;
     height: 500px;
@@ -17,37 +24,13 @@
     }
 </style>
 
-<table class="table table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">제목</th>
-            <th scope="col">원본 음악 총시간</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <td>{{ filename }}</td>
-        <td>{{ time_original }}{{'초'}}</td>
-    </tbody>
-</table>
-
-<div id="waveform_original">
-    <audio id="myAudio_original"><source id="audiofile_original" src={{soundfile_original}}></audio>
-        <h1>원본 음악 플레이어</h1>
-        <div class="controls_original">
-          <button class="btn btn-primary" data-action="back">Backward</button>
-          <button class="btn btn-primary" data-action="play">Play / Pause</button>
-          <button class="btn btn-primary" data-action="forward">Forward</button>
-          <button class="btn btn-primary" data-action="mute">Toggle Mute</button>
-        </div>
-    <script src = "/static/js/music_original.js"></script>
-</div>
+<link rel="stylesheet" href="/static/css/beat.css"/>
 
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
             <th scope="col">제목</th>
-            <th scope="col">비트 분석 총시간</th>
+            <th scope="col">음악 총 길이</th>
             <th scope="col">BPM</th>
             <th scope="col">다운로드</th>
 
@@ -64,21 +47,27 @@
     </tbody>
 </table>
 
-
-
-<div id="waveform">
-    <audio id="myAudio"><source id="audiofile" src={{soundfile}}></audio>
-
-    <h1>원본+비트 음악 플레이어</h1>
-
-    <div class="controls">
-      <button class="btn btn-primary" data-action="back">Backward</button>
-      <button class="btn btn-primary" data-action="play">Play / Pause</button>
-      <button class="btn btn-primary" data-action="forward">Forward</button>
-      <button class="btn btn-primary" data-action="mute">Toggle Mute</button>
-    </div>
+<div id="waveform_original">
+    <audio id="myAudio_original"><source id="audiofile_original" src={{soundfile_original}}></audio>
+        <h1>원본 음악 플레이어</h1>
+        <div class="controls_original">
+          <button class="btn btn-primary" data-action="back">Backward</button>
+          <button class="btn btn-primary" data-action="play">Play / Pause</button>
+          <button class="btn btn-primary" data-action="forward">Forward</button>
+          <button class="btn btn-primary" data-action="mute">Toggle Mute</button>
+        </div>
+    <script src = "/static/js/music_original.js"></script>
 </div>
 
-<script src = "/static/js/music.js"></script>
+  <div class="spinner-wrap">
+    <div class="spinner-outer"></div>
+    <div class="spinner-center"></div>
+    <div class="play-sprite"></div>
+  </div>
+
+  <audio loop="loop" data-bpm={{tempo}}>
+    <source src={{soundfile_original}} type="audio/wav"/>
+  </audio>
+  <script src = "/static/js/function.js"></script>
 
 {% endblock %}
