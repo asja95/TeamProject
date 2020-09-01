@@ -14,15 +14,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
     <link rel="stylesheet" href="/static/css/animation.css">
     <script src="/static/js/animation.js"></script>
-    <script>
-    $(document).ready(function() {
-    $('#loading').hide();
-    $('#next').submit(function(){
-    $('#loading').show();
-    return true;
-    });
-    });
-    </script>
+
 
     <style>
         .mydiv-top {
@@ -35,7 +27,7 @@
         padding: 0.6em 0 0;
         }
         .keyword-table {
-        opacity: 0.75;
+        opacity: 0.90;
         background-color: #FFFFF0;
         }
         .mytext {
@@ -55,24 +47,6 @@
         }
         #sidebar {
         background-color: #212529;
-        }
-
-        #loading {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: fixed;
-        display: block;
-        background: rgba(255, 255, 255, 0.2);
-        z-index: 99;
-        text-align: center;
-        }
-        #loading > img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 100;
         }
 
     </style>
@@ -95,7 +69,7 @@
                         <a href="{% url 'search:genre' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
                     </li>
                     <li class="active" onmouseover="func1(4)">
-                        <a href="{% url 'home3' %}"><span class="fa fa-youtube mr-3"></span> 동영상 검색</a>
+                        <a href="{% url 'interest:third' %}"><span class="fa fa-headphones mr-3"></span> 인기차트 100</a>
                     </li>
                 </ul>
         </nav>
