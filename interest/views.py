@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup
 from interest.models import Interest
 from urllib.request import urlopen
@@ -7,30 +7,41 @@ import datetime
 # Create your views here.
 
 
+def third(request):
+    return render(request, 'third.html', {'years': list(range(int(datetime.datetime.now().strftime("%Y")), 2005, -1)),
+                                          'months': list(range(1, 13)), 'days': list(range(1, 32))})
+
 def interest(request):
-    Interest.objects.all().delete()
+    if request.method == 'POST':
+        if request.POST['date'] == '':
+            return redirect('interest:third')
 
-    now = datetime.datetime.now()
-    formattedDate = now.strftime("%Y%m%d")
+        Interest.objects.all().delete()
 
-    url = urlopen('https://music.bugs.co.kr/chart/track/day/total?chartdate=' + str(formattedDate))
-    soup = BeautifulSoup(url, 'lxml')
+        year = request.POST['date'].split('-')[0]
+        month = request.POST['date'].split('-')[1]
+        day = request.POST['date'].split('-')[2]
+        date = year + month + day
 
-    artists = []
-    titles = []
 
-    for link1 in soup.find_all(name='p', attrs={'class': 'artist'}):
-        artists.append(link1.find('a').text)
+        url = urlopen('https://music.bugs.co.kr/chart/track/day/total?chartdate=' + date)
+        soup = BeautifulSoup(url, 'lxml')
 
-    for link2 in soup.find_all(name='p', attrs={'class': 'title'}):
-        titles.append(link2.text.split('\n')[1])
+        artists = []
+        titles = []
 
-    result = zip(artists, titles)
+        for link1 in soup.find_all(name='p', attrs={'class': 'artist'}):
+            artists.append(link1.find('a').text)
 
-    for a, t in result:
-        obj = Interest(title=t, artist=a)
-        obj.save()
+        for link2 in soup.find_all(name='p', attrs={'class': 'title'}):
+            titles.append(link2.text.split('\n')[1])
 
-    interests = Interest.objects.all()
+        result = zip(artists, titles)
 
-    return render(request, 'index.html', {'charts': interests, 'date': datetime.datetime.now().strftime("%Y.%m.%d")})
+        for a, t in result:
+            obj = Interest(title=t, artist=a)
+            obj.save()
+
+        interests = Interest.objects.all()
+
+        return render(request, 'index.html', {'charts': interests, 'date': year+'.'+month+'.'+day})
