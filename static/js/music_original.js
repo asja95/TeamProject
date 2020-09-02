@@ -21,7 +21,7 @@ var wavesurfer = WaveSurfer.create({
 
 wavesurfer.load($('#audiofile_original').attr('src'));
 
-    $('.controls_original .btn').on('click', function(){
+    $('.controls_original .MainNav-Button').on('click', function(){
       var action = $(this).data('action');
       console.log(action);
       switch (action) {

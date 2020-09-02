@@ -1,28 +1,64 @@
-html, body {
-  height: 100%;
+html {
+  background: #000;
 }
 
 body {
+  color: #232323;
+  font-family: 'Droid Sans', sans-serif;
   overflow: hidden;
+  text-align: justify;
 }
 
-.box {
-  max-width: 70vw;
-  padding: 30px;
-  margin: 0 auto;
-  position: relative;
+.door {
+  -webkit-animation: text-yo 3s 1s ease-in-out;
+          animation: text-yo 3s 1s ease-in-out;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+  color: #ccc;
+  height: 25em;
+  left: 70%;
+  overflow: hidden;
+  position: absolute;
+  text-align: justify;
   top: 50%;
-  font-size: 30px;
-  line-height: 1.5;
-  transform: translateY(-50%);
-  perspective: 400px;
+  font-size: 1.5rem;
+  -webkit-transform: translate(-50%, -50%) rotate(360deg);
+          transform: translate(-50%, -50%) rotate(360deg);
+  width: 25em;
 }
 
-.source {
-  color: skyblue;
-  margin: 0 auto;
+@-webkit-keyframes text-yo {
+  from {
+    color: #232323;
+    height: 100%;
+    letter-spacing: 1em;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  to {
+    letter-spacing: 0;
+    height: 25em;
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+    width: 25em;
+  }
 }
 
-.split {
-  color: white;
+@keyframes text-yo {
+  from {
+    color: #232323;
+    height: 100%;
+    letter-spacing: 1em;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  to {
+    letter-spacing: 0;
+    height: 25em;
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+    width: 25em;
+  }
 }

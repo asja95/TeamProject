@@ -1,21 +1,16 @@
-var text = $(".split");
+        var text = document.getElementById('text');
+        var newDom = '';
+        var animationDelay = 6;
 
-var split = new SplitText(text);
+        for(let i = 0; i < text.innerText.length; i++)
+        {
+            newDom += '<span class="char">' + (text.innerText[i] == ' ' ? '&nbsp;' : text.innerText[i])+ '</span>';
+        }
 
-function random(min, max){
-	return (Math.random() * (max - min)) + min;
-}
+        text.innerHTML = newDom;
+        var length = text.children.length;
 
-$(split.chars).each(function(i){
-	TweenMax.from($(this), 2.5, {
-		opacity: 0,
-		x: random(-500, 500),
-		y: random(-500, 500),
-		z: random(-500, 500),cd
-		scale: .1,
-		delay: i * .02,
-		yoyo: true,
-		repeat: -1,
-		repeatDelay: 10
-	});
-});
+        for(let i = 0; i < length; i++)
+        {
+            text.children[i].style['animation-delay'] = animationDelay * i + 'ms';
+        }
