@@ -1,0 +1,124 @@
+body, html {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.site {
+  min-height: 100%;
+  display: -webkit-box;
+  display: flex;
+}
+
+.nav {
+  background: #1F1F24;
+  color: #B89775;
+  width: 15px;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: -webkit-box;
+  display: flex;
+}
+.nav.active {
+  width: 111px;
+}
+.nav.active ul {
+  opacity: 1;
+}
+.nav.active + .content .overlay {
+  opacity: 0.5;
+}
+
+ul {
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 111px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+ul li {
+  width: 80px;
+  text-align: center;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(235, 237, 242, 0.47);
+}
+ul li:last-child {
+  border-bottom: 0;
+}
+ul a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 2px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+ul a:hover {
+  color: #B89775;
+}
+ul i.fa {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 0.2em;
+}
+
+.content {
+  position: relative;
+  background: #B89775 url(https://i.imgur.com/Ls5KVai.jpg) 50% 50%;
+  background-size: cover;
+  -webkit-box-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+.content h2 {
+  margin-top: 3em;
+  font-size: 1.7vw;
+  letter-spacing: 0.54;
+  margin-bottom: 1em;
+}
+.content h1 {
+  font-size: 4vw;
+  font-weight: bold;
+}
+.content h3 {
+  margin: 1em 0;
+  font-size: 1.6vw;
+  line-height: 1.5em;
+  letter-spacing: -0.4;
+}
+.content button {
+  padding: 12px 15px;
+  background: transparent;
+  border: 2px solid #1F1F24;
+  font-size: 1vw;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.content button:hover {
+  color: #B89775;
+  background: #1F1F24;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1F1F24;
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  pointer-events: none;
+}

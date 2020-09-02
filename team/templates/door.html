@@ -1,8 +1,22 @@
-{% extends "base.html" %}
-{% load bootstrap4 %}
-{% block container %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>웹과 음악 사이</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+    <link rel="stylesheet" href="/static/css/enter.css">
 
-<style>
+    <style>
+
     body{
             background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/backgroundimg_8.jpg");
             background-size: cover !important;
@@ -13,8 +27,82 @@
     #a-here {
     font-size: 20px;
     }
-</style>
 
-<div class="mydiv-top"></div>
-{% endblock %}
+        .mydiv-top {
+        height: 10px;
+        }
+        .door1 {
+        height: 90px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.6em 0 0;
+        }pyth
+        .keyword-table {
+        opacity: 0.90;
+        background-color: #FFFFF0;
+        }
+        .mytext {
+        color: #FFFFF0;
+        text-align: center;
+        }
+        .here {
+        overflow-y:scroll;
+        width:1050px;
+        height:600px;
+        }
+        .here::-webkit-scrollbar {
+        display: none;
+        }
+        nav {
+        opacity: 0.8;
+        }
+        #sidebar {
+        background-color: #212529;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="site">
+  <div class="nav">
+  <ul>
+    <li>
+      <a href="#">
+        <i class="fa fa-info"></i>
+        <span>ABOUT</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-pencil"></i>
+        <span>BLOG</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-folder-open-o"></i>
+        <span>WORKS</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-comments-o"></i>
+        <span>TALK</span>
+      </a>
+    </li>
+  </ul>
+  </div>
+  <div class="content">
+    <div class="overlay"></div>
+    <h2>WORATANA PERTH</h2>
+    <h1>FRONT-END DEVELOPER<br>& WORDPRESS LOVER</h1>
+    <h3>I craft meaningful experiences for design-inspired<br>
+    and mission-driven companies.</h3>
+    <a href="{% url 'home1' %}"><button>GET IN TOUCH</button></a>
+  </div>
+</div>
+
+</body>
+</html>
 
