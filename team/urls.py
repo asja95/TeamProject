@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('first/', TemplateView.as_view(template_name='first.html'), name='home1'),
     url('second/', TemplateView.as_view(template_name='second.html'), name='home2'),
-    url('third/', include('interest.urls')),
+    url('third/', TemplateView.as_view(template_name='third.html'), name='home3'),
     path('analy/', include('analy.urls')),
     path('search/', include('search.urls')),
     path('interest/', include('interest.urls')),

@@ -7,12 +7,9 @@ import datetime
 # Create your views here.
 
 
-def third(request):
-    return render(request, 'third.html', {'years': list(range(int(datetime.datetime.now().strftime("%Y")), 2005, -1)),
-                                          'months': list(range(1, 13)), 'days': list(range(1, 32))})
-
 def interest(request):
     if request.method == 'POST':
+
         if request.POST['date'] == '':
             return redirect('interest:third')
 

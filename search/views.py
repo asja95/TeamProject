@@ -131,42 +131,24 @@ def keyword(request):
                                image=image)
                 tmp.save()
 
-        song = Keywords.objects.all()
-        paginator = Paginator(song, 10)
-        page = request.GET.get('page', 1)
-        page_obj = paginator.get_page(page)
-        page_numbers_range = 5
-        max_index = len(paginator.page_range)
-        current_page = int(page) if page else 1
-        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-        end_index = start_index + page_numbers_range
+        else:
+            song = '노래 제목을 알 수 없습니다.'
+            album = '앨범명을 알 수 없습니다.'
+            artist = '아티스트를 알 수 없습니다.'
+            image = '/static/img/noimg.jpg'
+            id = ''
+            lyrics, release, genre = detail(id)
+            tmp = Keywords(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre,
+                           image=image)
+            tmp.save()
 
-        if end_index >= max_index:
-            end_index = max_index
-        paginator_range = paginator.page_range[start_index:end_index]
+        contents = Keywords.objects.all()
 
-        return render(request, 'keyword.html', {'keyword': request.POST['name'], 'song': page_obj,
-                                                'paginator_range': paginator_range,
-                                                'qs': parse.quote(request.POST['name'])})
-
+        return render(request, 'keyword.html', {'keyword': request.POST['name'], 'contents': contents})
 
     else:
-        song = Keywords.objects.all()
-        paginator = Paginator(song, 10)
-        page = request.GET.get('page', 1)
-        page_obj = paginator.get_page(page)
-        page_numbers_range = 5
-        max_index = len(paginator.page_range)
-        current_page = int(page) if page else 1
-        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-        end_index = start_index + page_numbers_range
 
-        if end_index >= max_index:
-            end_index = max_index
-        paginator_range = paginator.page_range[start_index:end_index]
-
-        return render(request, 'keyword.html', {'keyword': request.GET['name'], 'song': page_obj,
-                                                'paginator_range': paginator_range, 'qs': parse.quote(request.GET['name'])})
+        return redirect('home2')
 
 
 
@@ -216,6 +198,8 @@ def artist(request):
             image = '/static/img/noimg.jpg'
             artist = '아티스트를 알 수 없습니다.'
             artist_id = ''
+            tmp = Artists(image=image, artist=artist, artist_id=artist_id)
+            tmp.save()
 
         return render(request, 'artists.html', {'lists': Artists.objects.all(), 'keyword': request.POST['name']})
 
@@ -272,7 +256,7 @@ def artist_list(request, artist_id):
         else:
             song, album, artist = '노래 제목을 알 수 없습니다.', '앨범명을 알 수 없습니다.', '아티스트를 알 수 없습니다.'
             image = '/static/img/noimg.jpg'
-            lyrics, release, genre = '가사정보가 없습니다.', '앨범 발매연도를 알 수 없습니다.', '장르정보가 없습니다.'
+            lyrics, release, genre = detail('')
 
             tmp = Keywords(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre,
                            image=image)
@@ -280,13 +264,8 @@ def artist_list(request, artist_id):
 
         contents = Keywords.objects.all()
 
-        page = request.GET.get('page', '1')
-        paginator = Paginator(contents, 10)
-        page_obj = paginator.get_page(page)
-
         return render(request, 'keyword.html',
-                      {'contents': contents, 'keyword': Artists.objects.get(artist_id=artist_id).artist,
-                       'song': page_obj})
+                      {'contents': contents, 'keyword': Artists.objects.get(artist_id=artist_id).artist})
 
     else:
         return redirect('home2')
@@ -388,8 +367,7 @@ def theme(request):
 
                             lyrics = obj_d['lyrics'] if 'lyrics' in obj_d.keys() else '가사정보가 없습니다.'
                             try:
-                                release = datetime.datetime.strptime(obj_d['album']['releaseYmd'],
-                                                                     '%Y%m%d').strftime(
+                                release = datetime.datetime.strptime(obj_d['album']['releaseYmd'], '%Y%m%d').strftime(
                                     '%Y.%m.%d') if ('album' in obj_d.keys()) and (
                                         'releaseYmd' in obj_d['album'].keys()) else '앨범 발매연도를 알 수 없습니다.'
                             except:
@@ -406,59 +384,41 @@ def theme(request):
                                     type=type)
                         tmp.save()
 
+                # 조건에 해당하는 앨범은 있으나 데이터가 없을 때.
                 else:
                     song = album = artist = ''
                     lyrics, release, genre = '가사정보가 없습니다.', '앨범 발매연도를 알 수 없습니다.', '장르정보가 없습니다.'
-                    tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre)
+                    tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre, type=type)
                     tmp.save()
 
             # 조건을 만족하는 앨범이 없을 때.
             else:
-                song = album = artist = ''
+                song, album, artist = '노래 제목을 알 수 없습니다.', '앨범명을 알 수 없습니다.', '아티스트를 알 수 없습니다.'
                 lyrics, release, genre = '가사정보가 없습니다.', '앨범 발매연도를 알 수 없습니다.', '장르정보가 없습니다.'
-                tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre)
+                tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre, type=type)
                 tmp.save()
 
         # 앨범 목록이 존재하지 않을 때.
         else:
-            song = album = artist = ''
+            song, album, artist = '노래 제목을 알 수 없습니다.', '앨범명을 알 수 없습니다.', '아티스트를 알 수 없습니다.'
             lyrics, release, genre = '가사정보가 없습니다.', '앨범 발매연도를 알 수 없습니다.', '장르정보가 없습니다.'
-            tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre)
+            tmp = Theme(song=song, album=album, artist=artist, lyrics=lyrics, release=release, genre=genre, type=type)
             tmp.save()
 
         contents = Theme.objects.filter(type=type)
 
         return render(request, 'theme.html', {'contents': contents, 'keyword': name})
 
-
-    # 페이징을 위해 GET방식으로 호출했을 때.
     else:
         return redirect('home2')
 
 
-'''
-일단 페이징 부분은 보류. GET방식으로 호출하기 때문에 따로 고려해야 할 거 같음.
-'''
-
-
-def video(request):
-    url = 'https://www.youtube.com/results?search_query=' + parse.quote(request.POST['video'])
-    html = requests.get(url).text
-    for w in re.findall('"url":"/watch\?v=(.*?)"', str(html)):
-        if '=' not in w:
-            link = w
-            break
-    url = 'https://www.youtube.com/embed/' + link
-
-    return render(request, 'video.html', {'url': url})
 
 
 '''
 처음 보여지는 페이지에서는 차트의 종류만 크롤링해서 목록만 보여줄 수 있게 했음.
 검색 버튼을 누르면 해당하는 차트의 데이터를 크롤링할 것.
 '''
-
-
 def genre(request):
     # 차트 이름들이 이미 존재하면 크롤링을 반복하지 않고 존재하는 table을 사용할 것.
     if not Name.objects.all():
@@ -481,6 +441,7 @@ def genre(request):
             x.save()
 
     return render(request, 'genre.html', {'names': Name.objects.all()})
+
 
 
 # 각 검색 버튼을 눌렀을 때 수행할 것.
@@ -514,3 +475,7 @@ def chart(request):
         contents = Chart.objects.filter(genre=genre)
 
         return render(request, 'chart.html', {'contents': contents, 'keyword': genre})
+
+    else:
+
+        return redirect('search:genre')

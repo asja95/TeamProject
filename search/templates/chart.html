@@ -139,27 +139,33 @@
 </style>
 
 <h2 class="mb-4">{{ keyword }}</h2>
+
 <div class="container here">
-        <table class="table table-hover keyword-table">
-            <thead>
-                <tr>
-                    <th scope="col" style="width: 5%">No.</th>
-                    <th scope="col" style="width: 30%">노래제목</th>
-                    <th scope="col" style="width: 35%">가수</th>
-                    <th scope="col" style="width: 20%">발매날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-               {% for content in contents %}
-                <tr>
-                    <th>{{ forloop.counter }}</th>
-                    <td>{{ content.song }}</td>
-                    <td>{{ content.artist }}</td>
-                    <td>{{ content.release }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+    <table class="table table-hover keyword-table">
+
+        <thead>
+            <tr>
+                <th scope="col" style="width: 5%">No.</th>
+                <th scope="col" style="width: 30%">노래제목</th>
+                <th scope="col" style="width: 35%">가수</th>
+                <th scope="col" style="width: 20%">발매날짜</th>
+            </tr>
+        </thead>
+
+        <tbody>
+           {% for content in contents %}
+            <tr>
+                <th>{{ forloop.counter }}</th>
+                <td>{{ content.song }}</td>
+                <td>{{ content.artist }}</td>
+                <td>{{ content.release }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
 </div>
 
 {% endblock %}
