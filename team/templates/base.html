@@ -25,7 +25,7 @@
         text-align: center;
         vertical-align: middle;
         padding: 0.6em 0 0;
-        }pyth
+        }
         .keyword-table {
         opacity: 0.90;
         background-color: #FFFFF0;
@@ -69,16 +69,16 @@
                         <a href="{% url 'search:genre' %}"><span class="fa fa-list mr-3"></span> 장르별 인기차트</a>
                     </li>
                     <li class="active" onmouseover="func1(4)">
-                        <a href="{% url 'interest:third' %}"><span class="fa fa-headphones mr-3"></span> 인기차트 100</a>
+                        <a href="{% url 'home3' %}"><span class="fa fa-headphones mr-3"></span> 인기차트 100</a>
                     </li>
                 </ul>
         </nav>
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="mydiv-top"></div>
-                {% block container %}
-                {% endblock %}
-                </div>
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="mydiv-top"></div>
+            {% block container %}
+            {% endblock %}
             </div>
+        </div>
     </div>
     <script src="/static/js/jquery.min.js" type="2e70319bb3298c022c929462-text/javascript"></script>
     <script src="/static/js/popper.js" type="2e70319bb3298c022c929462-text/javascript"></script>
