@@ -26,7 +26,13 @@ wavesurfer.load($('#audiofile_original').attr('src'));
       console.log(action);
       switch (action) {
         case 'play':
-          wavesurfer.playPause();
+          wavesurfer.play();
+          break;
+        case 'pause':
+          wavesurfer.pause();
+          break;
+        case 'stop':
+          wavesurfer.stop();
           break;
         case 'back':
           wavesurfer.skipBackward();

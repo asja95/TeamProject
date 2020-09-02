@@ -17,18 +17,14 @@ def upload(request):
         filename = fs.save(myfile.name, myfile)
         filename_only = filename.split('.')[-2]
 
-        x_2, sr_2 = librosa.load('media/' + filename)
-        total_time_original = len(x_2) / sr_2
-
         x, sr = librosa.load('media/' + filename, duration=60)
+
         onset_env = librosa.onset.onset_strength(y=x, sr=sr)
         tempo, beat_times = librosa.beat.beat_track(onset_envelope=onset_env, sr=sr, start_bpm=120, units='time')
         total_time = len(x) / sr
 
         original_music = 'media/' + filename
-        beat_music = 'static/outputs/musics/' + filename_only + '_beat.wav'
-        clicks = librosa.clicks(beat_times, sr=sr, length=len(x))
-        write(beat_music, sr, x + clicks)
+
 
         beat_times_file = 'static/outputs/beats/' + filename_only + '_beat.txt'
         with open(beat_times_file, 'w') as f:
@@ -37,8 +33,7 @@ def upload(request):
             f.close()
 
         return render(request, 'list.html', {'filename': filename_only, 'tempo': int(tempo), 'time': int(total_time),
-                                             'soundfile': '/' + beat_music, 'beat_times': '/' + beat_times_file,
-                                             'soundfile_original': '/' + original_music, 'time_original': int(total_time_original)})
+                                             'beat_times': '/' + beat_times_file, 'soundfile': '/' + original_music})
 
     return redirect('home1')
 

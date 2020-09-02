@@ -2,6 +2,9 @@
 {% load bootstrap4 %}
 {% block container %}
 
+<link rel="stylesheet" href="/static/css/beat.css"/>
+<link rel="stylesheet" href="/static/css/button.css"/>
+
 <style>
     body{
             background:linear-gradient(0deg,rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("/static/img/backgroundimg_5.jpg");
@@ -24,7 +27,17 @@
     }
 </style>
 
-<link rel="stylesheet" href="/static/css/beat.css"/>
+<div class="spinner-wrap">
+    <div class="spinner-outer"></div>
+    <div class="spinner-center"></div>
+    <div class="play-sprite"></div>
+</div>
+
+<audio loop="loop" data-bpm={{tempo}}>
+    <source src={{soundfile}} type="audio/wav"/>
+</audio>
+
+<br><br><br><br>
 
 <table class="table table-hover">
 
@@ -47,33 +60,27 @@
         </td>
     </tbody>
 </table>
-
+<hr>
 <div id="waveform_original">
-
-    <audio id="myAudio_original"><source id="audiofile_original" src={{soundfile_original}}></audio>
-
-        <h1>원본 음악 플레이어</h1>
-
-        <div class="controls_original">
-            <button class="btn btn-primary" data-action="back">Backward</button>
-            <button class="btn btn-primary" data-action="play">Play / Pause</button>
-            <button class="btn btn-primary" data-action="forward">Forward</button>
-            <button class="btn btn-primary" data-action="mute">Toggle Mute</button>
-        </div>
+    <audio id="myAudio_original"><source id="audiofile_original" src={{soundfile}}></audio>
+    <div class="controls_original container">
+	    <h1>C o n t r o l</h1>
+        <br>
+	    <ul class="Nav MainNav">
+		    <li class="btn MainNav-Button MainNav-Button_LeftOfActive" data-action="back">&nbsp;Backward&nbsp;</li>
+		    <li class="btn MainNav-Button MainNav-Button_Active" data-action="play"> &nbsp; &nbsp; Play &nbsp; &nbsp;</li>
+		    <li class="btn MainNav-Button MainNav-Button_RightOfActive" data-action="pause">&nbsp;&nbsp; Pause &nbsp;&nbsp;</li>
+            <li class="btn MainNav-Button MainNav-Button" data-action="stop"> &nbsp; &nbsp; Stop &nbsp; &nbsp;</li>
+            <li class="btn MainNav-Button MainNav-Button" data-action="forward"> &nbsp;Forward &nbsp;</li>
+	    </ul>
+    </div>
 
     <script src = "/static/js/music_original.js"></script>
 </div>
 
-<div class="spinner-wrap">
-    <div class="spinner-outer"></div>
-    <div class="spinner-center"></div>
-    <div class="play-sprite"></div>
-</div>
 
-<audio loop="loop" data-bpm={{tempo}}>
-    <source src={{soundfile_original}} type="audio/wav"/>
-</audio>
 
 <script src = "/static/js/function.js"></script>
+    <script src = "/static/js/button.js"></script>
 
 {% endblock %}
