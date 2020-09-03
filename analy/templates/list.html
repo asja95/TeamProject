@@ -37,7 +37,7 @@
     <source src={{soundfile}} type="audio/wav"/>
 </audio>
 
-<br><br><br><br>
+<br><br><br><br><br>
 
 <table class="table table-hover">
 
@@ -55,7 +55,9 @@
         <td  style="text-align: center;">{{ time }}{{'초'}}</td>
         <td  style="text-align: center;">{{ tempo }}{{'bpm'}}</td>
         <td  style="text-align: center;">
-            <button class="btn btn-primary"><a href={{beat_times}} download>Download File</a></button>
+            <div class="button_wrap">
+                <a class="button_wrap_a" href={{beat_times}} download><span class="button_wrap_span">Download File</span></a>
+            </div>
         </td>
     </tbody>
 </table>
@@ -67,19 +69,17 @@
         <br>
 	    <ul class="Nav MainNav">
 		    <button class="MainNav-Button MainNav-Button_LeftOfActive" data-action="back">&nbsp;Backward&nbsp;</button>
-		    <button class="MainNav-Button MainNav-Button_Active" data-action="stop"> &nbsp; &nbsp; Stop &nbsp; &nbsp;</button>
-		    <button class="MainNav-Button MainNav-Button_RightOfActive" data-action="play">&nbsp;&nbsp; Play &nbsp;&nbsp;</button>
-            <button class="MainNav-Button MainNav-Button" data-action="pause"> &nbsp; &nbsp; Pause &nbsp; &nbsp;</button>
-            <button class="MainNav-Button MainNav-Button" data-action="forward"> &nbsp;Forward &nbsp;</button>
+		    <button class="MainNav-Button MainNav-Button_Active" data-action="stop"> &nbsp;&nbsp;&nbsp;Stop&nbsp;&nbsp;&nbsp;</button>
+		    <button class="MainNav-Button MainNav-Button_RightOfActive" data-action="play">&nbsp;&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;</button>
+            <button class="MainNav-Button MainNav-Button" data-action="pause"> &nbsp;&nbsp; Pause &nbsp;&nbsp;</button>
+            <button class="MainNav-Button MainNav-Button" data-action="forward"> &nbsp; Forward &nbsp;</button>
 	    </ul>
     </div>
 
     <script src = "/static/js/music_original.js"></script>
 </div>
 
-
-
 <script src = "/static/js/function.js"></script>
-    <script src = "/static/js/button.js"></script>
+<script src = "/static/js/button.js"></script>
 
 {% endblock %}

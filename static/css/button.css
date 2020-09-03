@@ -297,3 +297,80 @@ p {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+
+.button_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_wrap_a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "helvetica";
+  font-size: 0.8rem;
+  color: #262626;
+  letter-spacing: 4px;
+  padding: 14px 28px;
+  border: 5px solid #262626;
+  border-radius: 10px;
+  trasnition: 0.5s;
+  position: relative;
+  overflow: hidden;
+}
+
+.button_wrap_a:before, .button_wrap_a:after, .button_wrap_span:before, .button_wrap_span:after {
+  content: "";
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  background: #262626;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.button_wrap_a:before {
+  top: 0;
+  left: -26%;
+}
+
+.button_wrap_a:after {
+  top: 0;
+  right: -26%;
+}
+
+.button_wrap_span:before {
+  bottom: -100%;
+  left: 25%;
+}
+
+.button_wrap_span:after {
+  top: -100%;
+  right: 25%;
+}
+
+.button_wrap_a:hover:after {
+  top: 0%;
+  right: 0%;
+}
+
+.button_wrap_a:hover:before {
+  top: 0%;
+  left: 0%;
+}
+
+.button_wrap_a:hover .button_wrap_span:before {
+  bottom: 0%;
+  left: 25%;
+}
+
+.button_wrap_a:hover .button_wrap_span:after {
+  top: 0%;
+  right: 25%;
+}
+
+.button_wrap_a:hover {
+  color: white;
+}
