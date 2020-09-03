@@ -21,12 +21,18 @@ var wavesurfer = WaveSurfer.create({
 
 wavesurfer.load($('#audiofile_original').attr('src'));
 
-    $('.controls_original .btn').on('click', function(){
+    $('.controls_original .MainNav-Button').on('click', function(){
       var action = $(this).data('action');
       console.log(action);
       switch (action) {
         case 'play':
-          wavesurfer.playPause();
+          wavesurfer.play();
+          break;
+        case 'pause':
+          wavesurfer.pause();
+          break;
+        case 'stop':
+          wavesurfer.stop();
           break;
         case 'back':
           wavesurfer.skipBackward();
