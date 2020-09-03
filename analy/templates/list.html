@@ -41,26 +41,25 @@
 
 <table class="table table-hover">
 
-    <thead class="thead-dark">
+    <thead style="color: #FFFFF0">
         <tr>
-            <th scope="col">제목</th>
-            <th scope="col">음악 총 길이</th>
-            <th scope="col">BPM</th>
-            <th scope="col">다운로드</th>
-
+            <th scope="col" style="text-align: center;">제목</th>
+            <th scope="col" style="text-align: center;">음악 총 길이</th>
+            <th scope="col" style="text-align: center;">BPM</th>
+            <th scope="col" style="text-align: center;">다운로드</th>
         </tr>
     </thead>
 
     <tbody>
-        <td>{{ filename }}</td>
-        <td>{{ time }}{{'초'}}</td>
-        <td>{{ tempo }}{{'bpm'}}</td>
-        <td>
+        <td  style="text-align: center;">{{ filename }}</td>
+        <td  style="text-align: center;">{{ time }}{{'초'}}</td>
+        <td  style="text-align: center;">{{ tempo }}{{'bpm'}}</td>
+        <td  style="text-align: center;">
             <button class="btn btn-primary"><a href={{beat_times}} download>Download File</a></button>
         </td>
     </tbody>
 </table>
-<hr>
+
 <div id="waveform_original">
     <audio id="myAudio_original"><source id="audiofile_original" src={{soundfile}}></audio>
     <div class="controls_original container">

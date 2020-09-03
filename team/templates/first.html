@@ -15,16 +15,19 @@
         }
 </style>
 
-<div style="transform: translate(0%, 160%);">
+<div style="transform: translate(0%, 100%);">
 
     <h2 class="mb-4 mytext">내 음악 분석하기</h2>
+    <p style="text-align: center; color: #FFFFF0;">분석하고자 하는 음악파일을 업로드 해주세요. <br>
+    ※파일 형식: .wav .mp3 .aac .ogg .wma .flac .alac .aiff .audio
+    </p>
 
     <div style="text-align: center;">
         <form action="{% url 'analy:upload' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input  id="input-audio-file" type="file" name="audio"
-                    accept=".wav,.mp3,.aac,.ogg,.wma,.flac,.alac,.aiff,audio/*"
-                    multiple="multiple" >
+                    accept=".wav,.mp3,.aac,.ogg,.wma,.flac,.alac,.aiff, .audio/*"
+                    multiple="multiple" style="color: #FFFFF0;">
             <input type="submit" value="업로드">
         </form>
     </div>

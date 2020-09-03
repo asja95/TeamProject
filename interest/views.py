@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup
 from interest.models import Interest
 from urllib.request import urlopen
-import datetime
 
 # Create your views here.
 
@@ -11,7 +10,7 @@ def interest(request):
     if request.method == 'POST':
 
         if request.POST['date'] == '':
-            return redirect('interest:third')
+            return redirect('home3')
 
         Interest.objects.all().delete()
 

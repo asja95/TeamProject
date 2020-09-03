@@ -5,10 +5,6 @@ from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from urllib.request import urlopen
 import datetime
 import time as mod_time
-from urllib import parse
-from django.core.paginator import Paginator
-import re
-import requests
 
 
 # Create your views here.
